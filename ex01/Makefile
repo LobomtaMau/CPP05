@@ -1,4 +1,4 @@
-NAME = bureaucrat
+NAME = form
 
 SRC = main.cpp Bureaucrat.cpp
 
@@ -28,6 +28,6 @@ re: fclean all
 
 run:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes \
-	./bureaucrat
+	./form
 
 .PHONY: all clean fclean re
