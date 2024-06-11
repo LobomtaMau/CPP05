@@ -40,14 +40,5 @@ int main() {
     }
 
 
-    // try {
-    //     Bureaucrat def;
-    //     def.incrementGrade();
-    //     def.getGrade();
-    // } catch (std::exception &e) {
-    //     std::cerr << "Exception: " << e.what() << std::endl;
-    // }
-
-
     return 0;
 }

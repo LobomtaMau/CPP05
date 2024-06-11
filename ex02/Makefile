@@ -1,6 +1,7 @@
-NAME = bureaucrat
+NAME = robot
 
-SRC = main.cpp Bureaucrat.cpp
+SRC =	main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJ_DIR = obj
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.cpp=.o))
@@ -28,6 +29,6 @@ re: fclean all
 
 run:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes \
-	./bureaucrat
+	./robot
 
 .PHONY: all clean fclean re

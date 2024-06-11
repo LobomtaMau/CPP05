@@ -4,10 +4,13 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
     private:
-        std::string _name;
+        const std::string _name;
         int _grade;
 
         void checkGrade(int grade) const;
@@ -19,6 +22,7 @@ class Bureaucrat {
         Bureaucrat &operator=(Bureaucrat &other);
         virtual ~Bureaucrat();
 
+
         class GradeTooHighException : public std::runtime_error {
             public:
                 GradeTooHighException() : std::runtime_error("Grade is to high!") {}
@@ -29,11 +33,14 @@ class Bureaucrat {
                 GradeTooLowException() : std::runtime_error("grade is to low!") {}
         };
 
+        
         const std::string &getName() const;
         int getGrade() const;
 
         void incrementGrade();
         void decrementGrade();
+
+        void signForm(Form &form);
         
 };
 

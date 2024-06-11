@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
     // std::cout << "Default Bureaucrat created: " << _name << ", grade " << _grade << std::endl;
 }
 
@@ -14,7 +14,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(oth
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat &other) {
     if(this != &other) {
-        _grade = other._grade;
+        this->_grade = other._grade;
         checkGrade(_grade);
     }
     return *this;
@@ -50,4 +50,15 @@ void Bureaucrat::decrementGrade() {
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat) {
     out << bureaucrat.getName() << ", bureacrat grade " << bureaucrat.getGrade();
     return out;
+}
+
+void Bureaucrat::signForm(Form &form) {
+    try {
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getName() << "\n";
+    }
+    catch (std::exception &e) {
+        std::cout << _name << " couldn’t sign " << form.getName() << " because "
+        << e.what() << "\n";
+    }
 }
