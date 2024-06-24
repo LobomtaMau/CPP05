@@ -21,20 +21,26 @@ class AForm {
         AForm &operator=(const AForm &other);
         virtual ~AForm();
 
-    class GradeTooLowException : public std::runtime_error {
-        public:
-            GradeTooLowException() : std::runtime_error("Grade too low!") {}
-    };
+        class GradeTooHighException : public std::exception {
+            public:
+                const char *what() const throw(){
+                    return "Grade is too high!";
+                }
+        };
 
-    class GradeTooHighException : public std::runtime_error {
-        public:
-            GradeTooHighException() : std::runtime_error("Grade too high!") {}
-    };
+        class GradeTooLowException : public std::exception {
+            public:
+                const char* what() const throw()  {
+                    return "Grade is too low!";
+                }
+        };
 
-    class FormNotSignedException : public std::runtime_error {
-        public:
-            FormNotSignedException() : std::runtime_error("Form not signed") {}
-    };
+        class FormNotSignedException : public std::exception {
+            public:
+                const char* what() const throw()  {
+                    return "Form not signed";
+                }
+        };
 
     std::string getName() const;
     bool getSigned() const;

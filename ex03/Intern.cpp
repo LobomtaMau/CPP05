@@ -14,19 +14,22 @@ Intern &Intern::operator=(const Intern &other) {
 
 Intern::~Intern() {}
 
-AForm *Intern::makeForm(const std::string &formName, const std::string &target) const {
-    AForm *newForm = NULL;
-    
-    if (formName == "shrubbery creation")
-        newForm = createShrubberyCreationForm(target);
-    else if (formName == "robotomy request")
-        newForm = createRobotomyRequestForm(target);
-    else if (formName == "presidential pardon")
-        newForm = createPresidentialPardonForm(target);
-    else
-        std::cout << "Error: Form name '" << formName << "' not recognized." << std::endl;
+AForm* Intern::makeForm(const std::string& formName, const std::string& target) const {
+    const std::string formTypes[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    AForm* (Intern::*formCreators[])(const std::string&) const = {
+        &Intern::createShrubberyCreationForm,
+        &Intern::createRobotomyRequestForm,
+        &Intern::createPresidentialPardonForm
+    };
 
-    return newForm;
+    for (int i = 0; i < 3; ++i) {
+        if (formName == formTypes[i]) {
+            std::cout << "Intern creates " << formName << std::endl;
+            return (this->*formCreators[i])(target);
+        }
+    }
+
+    throw InvlaidFileException();
 }
 
 AForm *Intern::createShrubberyCreationForm(const std::string &target) const {

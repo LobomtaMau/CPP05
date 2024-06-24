@@ -22,18 +22,20 @@ class Bureaucrat {
         Bureaucrat &operator=(Bureaucrat &other);
         virtual ~Bureaucrat();
 
-
-        class GradeTooHighException : public std::runtime_error {
+        class GradeTooHighException : public std::exception {
             public:
-                GradeTooHighException() : std::runtime_error("Grade is to high!") {}
+                const char *what() const throw(){
+                    return "Grade is too high!";
+                }
         };
 
-        class GradeTooLowException : public std::runtime_error {
+        class GradeTooLowException : public std::exception {
             public:
-                GradeTooLowException() : std::runtime_error("grade is to low!") {}
+                const char* what() const throw()  {
+                    return "Grade is too low!";
+                }
         };
 
-        
         const std::string &getName() const;
         int getGrade() const;
 

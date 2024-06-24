@@ -19,12 +19,13 @@ int main() {
 
         std::cout << alice << "\n";
         std::cout << formB << "\n";
-
+        std::cout << "\n";
+        
         alice.signForm(formB);
         std::cout << "\n";
     } catch (std::exception &e) {
         std::cerr << "Exception: " << e.what() << "\n";
     }
-    std::cout << "\n";
+    
     return 0;
 }

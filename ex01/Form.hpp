@@ -19,16 +19,20 @@ class Form {
         Form(const Form &other);
         Form &operator=(const Form &other);
         virtual ~Form();
+ 
+        class GradeTooHighException : public std::exception {
+            public:
+                const char *what() const throw(){
+                    return "Grade is too high!";
+                }
+        };
 
-    class GradeTooLowException : public std::runtime_error {
-        public:
-            GradeTooLowException() : std::runtime_error("Grade too low!") {}
-    };
-
-    class GradeTooHighException : public std::runtime_error {
-        public:
-            GradeTooHighException() : std::runtime_error("Grade too high!") {}
-    };
+        class GradeTooLowException : public std::exception {
+            public:
+                const char* what() const throw()  {
+                    return "Grade is too low!";
+                }
+        };
 
     std::string getName() const;
     bool getSigned() const;
